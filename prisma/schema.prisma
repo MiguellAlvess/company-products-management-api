@@ -14,14 +14,20 @@ datasource db {
 }
 
 model Company {
-  id String @id @default(uuid())
-  name String
-  cnpj String @unique
-  password String 
+  id       String    @id @default(uuid())
+  name     String
+  cnpj     String    @unique
+  email    String    @unique
+  password String
+  products Product[]
 }
 
 model Product {
-  id String @id @default(uuid())
-  name String
-  price Decimal @db.Decimal(5,2)
+  id          String  @id @default(uuid())
+  name        String
+  price       Decimal @db.Decimal(10, 2)
+  stock       Int
+  description String
+  companyId  String
+  company     Company @relation(fields: [companyId], references: [id])
 }
