@@ -1,4 +1,4 @@
-import { conflict } from './http.js'
+import { conflict, notFound } from './index.js'
 
 export const cnpjAlreadyInUseResponse = () => {
     return conflict({
@@ -9,5 +9,11 @@ export const cnpjAlreadyInUseResponse = () => {
 export const emailAlreadyInUseResponse = () => {
     return conflict({
         message: 'The provided email is already in use',
+    })
+}
+
+export const companyNotFoundResponse = () => {
+    return notFound({
+        message: 'Company not found',
     })
 }
