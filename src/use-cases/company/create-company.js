@@ -6,19 +6,21 @@ import {
 export class CreateCompanyUseCase {
     constructor(
         createCompanyRepository,
-        getCompanyByIdRepository,
+        getCompanyByCnpjRepository,
+        getCompanyByEmailRepository,
         passwordHasherAdapter,
         idGeneratorAdapter,
     ) {
         this.createCompanyRepository = createCompanyRepository
-        this.getCompanyByIdRepository = getCompanyByIdRepository
+        this.getCompanyByCnpjRepository = getCompanyByCnpjRepository
+        this.getCompanyByEmailRepository = getCompanyByEmailRepository
         this.passwordHasherAdapter = passwordHasherAdapter
         this.idGeneratorAdapter = idGeneratorAdapter
     }
 
     async execute(createCompanyParams) {
         const companyWithProvidedCnpj =
-            await this.getCompanyByIdRepository.execute(
+            await this.getCompanyByCnpjRepository.execute(
                 createCompanyParams.cnpj,
             )
 
@@ -27,7 +29,7 @@ export class CreateCompanyUseCase {
         }
 
         const companyEmailWithProvidedEmail =
-            await this.getCompanyByIdRepository.execute(
+            await this.getCompanyByEmailRepository.execute(
                 createCompanyParams.email,
             )
 

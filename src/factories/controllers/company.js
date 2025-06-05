@@ -1,6 +1,7 @@
 import {
     PostgresCreateCompanyRepository,
-    PostgresGetCompanyByIdRepository,
+    PostgresGetCompanyByCnpjRepository,
+    PostgresGetCompanyByEmailRepository,
 } from '../../repositories/index.js'
 import {
     IdGeneratorAdapter,
@@ -11,14 +12,17 @@ import { CreateCompanyUseCase } from '../../use-cases/index.js'
 import { CreateCompanyController } from '../../controllers/index.js'
 
 export const makeCreateCompanyController = () => {
-    const getCompanyByIdRepository = new PostgresGetCompanyByIdRepository()
+    const getCompanyByCnpjRepository = new PostgresGetCompanyByCnpjRepository()
+    const getCompanyByEmailRepository =
+        new PostgresGetCompanyByEmailRepository()
     const createCompanyRepository = new PostgresCreateCompanyRepository()
     const passwordHasherAdapter = new PasswordHasherAdapter()
     const idGeneratorAdapter = new IdGeneratorAdapter()
 
     const createCompanyUseCase = new CreateCompanyUseCase(
         createCompanyRepository,
-        getCompanyByIdRepository,
+        getCompanyByCnpjRepository,
+        getCompanyByEmailRepository,
         passwordHasherAdapter,
         idGeneratorAdapter,
     )
