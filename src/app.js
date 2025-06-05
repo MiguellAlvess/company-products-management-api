@@ -3,6 +3,6 @@ import { companiesRouter } from './routes/companies.js'
 
 export const app = express()
 
-app.use('/api/companies', companiesRouter)
-
 app.use(express.json())
+
+app.use('/api/companies', companiesRouter)
