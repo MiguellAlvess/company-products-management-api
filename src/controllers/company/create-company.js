@@ -10,7 +10,7 @@ import {
     EmailAlreadyInUseError,
 } from '../../errors/index.js'
 import { createCompanySchema } from '../../schemas/company.js'
-import { ZodError } from 'zod/v4'
+import { ZodError } from 'zod'
 
 export class CreateCompanyController {
     constructor(createCompanyUseCase) {
@@ -18,6 +18,7 @@ export class CreateCompanyController {
     }
     async execute(httpRequest) {
         try {
+            console.log('Request body received:', httpRequest.body)
             const params = httpRequest.body
 
             await createCompanySchema.parseAsync(params)
