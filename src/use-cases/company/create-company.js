@@ -1,4 +1,7 @@
-import { CnpjAlreadyInUseError, EmailAlreadyInUseError } from '../../errors'
+import {
+    CnpjAlreadyInUseError,
+    EmailAlreadyInUseError,
+} from '../../errors/index.js'
 
 export class CreateCompanyUseCase {
     constructor(
