@@ -1,4 +1,4 @@
-import { conflict } from './http'
+import { conflict } from './http.js'
 
 export const cnpjAlreadyInUseResponse = () => {
     return conflict({
