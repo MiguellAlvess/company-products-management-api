@@ -11,3 +11,10 @@ export class EmailAlreadyInUseError extends Error {
         this.name = 'EmailAlreadyExistsError'
     }
 }
+
+export class CompanyNotFoundError extends Error {
+    constructor() {
+        super(`Company not found`)
+        this.name = 'CompanyNotFoundError'
+    }
+}
