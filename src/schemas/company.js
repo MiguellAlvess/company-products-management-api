@@ -39,3 +39,5 @@ export const createCompanySchema = zod.object({
             message: 'Password must be at least 6 characters',
         }),
 })
+
+export const updateCompanySchema = createCompanySchema.partial()
