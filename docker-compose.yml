@@ -3,11 +3,11 @@ version: '3'
 services:
     postgres:
         image: postgres
-        container_name: product-company-crud-api
+        container_name: company-products-management-api
         environment:
             POSTGRES_USER: postgres
             POSTGRES_PASSWORD: password
-            POSTGRES_DB: product-company-crud
+            POSTGRES_DB: company-products-management
         ports:
             - 5432:5432
         volumes:
