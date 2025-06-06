@@ -1,10 +1,10 @@
 import { IdGeneratorAdapter } from '../../adapters/index.js'
-import { CreateCompanyController } from '../../controllers'
+import { CreateCompanyController } from '../../controllers/index.js'
 import {
     PostgresCreateProductRepository,
     PostgresGetCompanyByIdRepository,
 } from '../../repositories/index.js'
-import { CreateProductUseCase } from '../../use-cases'
+import { CreateProductUseCase } from '../../use-cases/index.js'
 
 export const makeCreateProductController = () => {
     const createProductRepository = new PostgresCreateProductRepository()
