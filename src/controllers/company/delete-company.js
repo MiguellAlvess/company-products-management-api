@@ -1,5 +1,7 @@
+import { CompanyNotFoundError } from '../../errors/company.js'
 import {
     checkIfIdIsValid,
+    companyNotFoundResponse,
     invalidIdResponse,
     ok,
     serverError,
@@ -25,6 +27,9 @@ export class DeleteCompanyController {
 
             return ok(deletedCompany)
         } catch (error) {
+            if (error instanceof CompanyNotFoundError) {
+                return companyNotFoundResponse()
+            }
             console.error(error)
             return serverError()
         }
