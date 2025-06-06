@@ -1,5 +1,6 @@
 import {
     PostgresCreateCompanyRepository,
+    PostgresDeleteCompanyRepository,
     PostgresGetCompanyByCnpjRepository,
     PostgresGetCompanyByEmailRepository,
     PostgresGetCompanyByIdRepository,
@@ -11,12 +12,14 @@ import {
 } from '../../adapters/index.js'
 import {
     CreateCompanyUseCase,
+    DeleteCompanyUseCase,
     GetCompanyByIdUseCase,
     UpdateCompanyUseCase,
 } from '../../use-cases/index.js'
 
 import {
     CreateCompanyController,
+    DeleteCompanyController,
     GetCompanyByIdController,
     UpdateCompanyController,
 } from '../../controllers/index.js'
@@ -75,4 +78,19 @@ export const makeUpdateCompanyController = () => {
     )
 
     return updateCompanyController
+}
+
+export const makeDeleteCompanyController = () => {
+    const deleteCompanyRepository = new PostgresDeleteCompanyRepository()
+    const getCompanyByIdRepository = new PostgresGetCompanyByIdRepository()
+
+    const deleteCompanyUseCase = new DeleteCompanyUseCase(
+        deleteCompanyRepository,
+        getCompanyByIdRepository,
+    )
+
+    const deleteCompanyController = new DeleteCompanyController(
+        deleteCompanyUseCase,
+    )
+    return deleteCompanyController
 }
