@@ -1,4 +1,4 @@
-import { CompanyNotFoundError } from '../../errors/index'
+import { CompanyNotFoundError } from '../../errors/index.js'
 
 export class DeleteCompanyUseCase {
     constructor(deleteCompanyRepository, getCompanyByIdRepository) {
