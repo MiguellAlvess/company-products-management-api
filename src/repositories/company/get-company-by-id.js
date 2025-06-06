@@ -4,7 +4,7 @@ export class PostgresGetCompanyByIdRepository {
     async execute(companyId) {
         return await prisma.company.findUnique({
             where: {
-                companyId,
+                id: companyId,
             },
         })
     }
