@@ -23,7 +23,7 @@ companiesRouter.get('/:companyId', async (req, res) => {
     res.status(statusCode).json(body)
 })
 
-companiesRouter.patch('./:companyId', async (req, res) => {
+companiesRouter.patch('/:companyId', async (req, res) => {
     const updateCompanyController = makeUpdateCompanyController()
 
     const { body, statusCode } = await updateCompanyController.execute(req)
