@@ -18,7 +18,6 @@ export class CreateCompanyController {
     }
     async execute(httpRequest) {
         try {
-            console.log('Request body received:', httpRequest.body)
             const params = httpRequest.body
 
             await createCompanySchema.parseAsync(params)
