@@ -2,14 +2,21 @@ import {
     PostgresCreateCompanyRepository,
     PostgresGetCompanyByCnpjRepository,
     PostgresGetCompanyByEmailRepository,
+    PostgresGetCompanyByIdRepository,
 } from '../../repositories/index.js'
 import {
     IdGeneratorAdapter,
     PasswordHasherAdapter,
 } from '../../adapters/index.js'
-import { CreateCompanyUseCase } from '../../use-cases/index.js'
+import {
+    CreateCompanyUseCase,
+    GetCompanyByIdUseCase,
+} from '../../use-cases/index.js'
 
-import { CreateCompanyController } from '../../controllers/index.js'
+import {
+    CreateCompanyController,
+    GetCompanyByIdController,
+} from '../../controllers/index.js'
 
 export const makeCreateCompanyController = () => {
     const getCompanyByCnpjRepository = new PostgresGetCompanyByCnpjRepository()
@@ -31,4 +38,17 @@ export const makeCreateCompanyController = () => {
         createCompanyUseCase,
     )
     return createCompanyController
+}
+
+export const makeGetCompanyByIdController = () => {
+    const getCompanyByIdRepository = new PostgresGetCompanyByIdRepository()
+
+    const getCompanyByIdUseCase = new GetCompanyByIdUseCase(
+        getCompanyByIdRepository,
+    )
+
+    const getCompanyByIdController = new GetCompanyByIdController(
+        getCompanyByIdUseCase,
+    )
+    return getCompanyByIdController
 }
