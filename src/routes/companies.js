@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import {
     makeCreateCompanyController,
+    makeDeleteCompanyController,
     makeGetCompanyByIdController,
     makeUpdateCompanyController,
 } from '../factories/controllers/company.js'
@@ -27,6 +28,14 @@ companiesRouter.patch('/:companyId', async (req, res) => {
     const updateCompanyController = makeUpdateCompanyController()
 
     const { body, statusCode } = await updateCompanyController.execute(req)
+
+    res.status(statusCode).json(body)
+})
+
+companiesRouter.delete('/:companyId', async (req, res) => {
+    const deleteCompanyController = makeDeleteCompanyController()
+
+    const { body, statusCode } = await deleteCompanyController.execute(req)
 
     res.status(statusCode).json(body)
 })
