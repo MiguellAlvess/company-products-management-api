@@ -47,7 +47,7 @@ export class UpdateCompanyUseCase {
         }
 
         if (updateCompanyParams.password) {
-            const hashedPassword = this.passwordHasherAdapter.execute(
+            const hashedPassword = await this.passwordHasherAdapter.execute(
                 updateCompanyParams.password,
             )
 
