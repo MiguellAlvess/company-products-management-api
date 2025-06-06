@@ -6,7 +6,7 @@ export class PostgresUpdateCompanyRepository {
         try {
             return await prisma.company.update({
                 where: {
-                    companyId,
+                    id: companyId,
                 },
                 data: {
                     ...updateCompanyParams,
