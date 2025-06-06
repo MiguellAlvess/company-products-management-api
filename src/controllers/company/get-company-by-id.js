@@ -14,15 +14,15 @@ export class GetCompanyByIdController {
 
     async execute(httpRequest) {
         try {
-            const idIsValid = checkIfIdIsValid(httpRequest.params.id)
+            const companyId = httpRequest.params.companyId
+
+            const idIsValid = checkIfIdIsValid(companyId)
 
             if (!idIsValid) {
                 return invalidIdResponse()
             }
 
-            const company = await this.getCompanyByIdUseCase.execute(
-                httpRequest.params.id,
-            )
+            const company = await this.getCompanyByIdUseCase.execute(companyId)
 
             return ok(company)
         } catch (error) {
